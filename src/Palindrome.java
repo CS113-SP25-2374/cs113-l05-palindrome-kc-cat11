@@ -12,6 +12,31 @@ public class Palindrome {
      * @return true if they are the same
      */
     public boolean isPalindrome(String s) {
+        Stack<Character> first = new Stack<>();
+        Stack<Character> second = new Stack<>();
+        Stack<Character> flipped = new Stack<>();
+        String testString = s;
+        int length = testString.length();
+        for(int i = 0; i<length/2;i++)
+        {
+            first.push(testString.charAt(i));
+        }
+        for(int i = length/2 + (length%2); i<length; i++)
+        {
+            second.push(testString.charAt(i));
+        }
+        while(!second.empty())
+        {
+            flipped.push(second.pop());
+        }
+        while(!first.empty())
+        {
+            if(!first.pop().equals(flipped.pop()))
+            {
+                return false;
+            }
+        }
         return true;
     }
 }
+
